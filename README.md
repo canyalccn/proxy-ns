@@ -1,11 +1,10 @@
-# App Proxifier (Network Namespace + tun2socks)
+# Proxy-NS — Linux App Proxifier
 
 ## Dependencies
 
 - `tun2socks`
 - `nsenter`
 
----
 
 ## How does it work?
 
@@ -14,9 +13,8 @@
 It then:
 
 - Connects this namespace to the host using a veth pair  
-- Routes `tun2socks` traffic to your SOCKS5 proxy running in the host namespace  
+- Routes all `tun2socks` traffic to your SOCKS5 proxy running in the host namespace  
 
----
 
 ## Setup
 
@@ -39,22 +37,22 @@ TUN2SOCKS="/opt/tun2socks/tun2socks"
 SOCKS_PORT="1080"
 ```
 
-> ⚠️ **MAKE SURE YOUR SOCKS PROXY LISTENS ON `0.0.0.0` OR INCLUDES THE VETH PAIR ADDRESS**
+- Optionally run it as a systemd service
+  
+⚠️ **MAKE SURE YOUR SOCKS PROXY LISTENS ON `0.0.0.0` OR INCLUDES THE VETH PAIR ADDRESS** ⚠️
 
----
 
 ## Running an App Through the Proxy
 
 ### Lazy way:
 
 ```bash
-sudo -E nsenter --net=/run/netns/proxy -- sudo -Eu USERNAME EXECUTABLE
+sudo -E nsenter --net=/run/netns/proxy sudo -Eu USERNAME EXECUTABLE
 ```
 
 I’ve added a simple bash script for running Discord.  
 You can use that as an example for your own app and optionally save it in your `$PATH` for easier access.
 
----
 
 ## Notes
 
