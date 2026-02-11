@@ -26,6 +26,7 @@ VETH1_ADDR="10.200.200.2/24"
 
 handler() {
     ip netns delete "$NS"
+    ip link delete "$VETH0"
 }
 
 trap handler EXIT
