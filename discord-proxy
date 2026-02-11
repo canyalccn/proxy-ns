@@ -1,4 +1,4 @@
 #!/bin/bash
 sudo -v || exit 1
-sudo -E nsenter --net=/run/netns/proxy sudo -Eu USER discord --password-store=basic >/dev/null 2>&1 &
+sudo -E nsenter --net=/run/netns/proxy sudo -Eu USER discord >/dev/null 2>&1 &
 disown
