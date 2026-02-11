@@ -25,8 +25,9 @@ VETH0_ADDR="10.200.200.1/24"
 VETH1_ADDR="10.200.200.2/24"
 
 handler() {
-    ip netns delete "$NS"
-    ip link delete "$VETH0"
+    set +e
+    ip netns delete "$NS" 2>/dev/null || true
+    ip link delete "$VETH0" 2>/dev/null || true
 }
 
 trap handler EXIT
